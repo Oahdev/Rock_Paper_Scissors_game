@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Rock Paper Scissors App</title>
+    </head>
+    <style>
+        *{outline: none;}
+        .container{
+            margin: auto; width: 50%;text-align: center; font-family: Cambria;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 27px; border-radius: 9px; background-color: #f2f2f2d2;
+        }
+        button{
+            margin: 9px 0px; background-color: rgb(61, 167, 202);
+            border: none; border-radius: 9px; font-weight: bold;
+            padding: 9px 18px; color: white; cursor: pointer;
+        }
+        #life{
+            display: flex; justify-content: space-between; 
+            width: 30%; margin: auto;
+        }
+        #endMsg{
+            display: none;
+        }
+        /* #content{
+            display: none;
+        } */
+    </style>
+    <body>
+    <div class="container">
+        <h2>Rock Paper Scissors</h2>
+        <div id="life">
+            <p>You: <span id="you" style="font-weight: bold;"></span></p>
+            <p>Computer: <span id="com" style="font-weight: bold;"></span></p>
+        </div>
+        <div id="content">
+            <input type="radio" checked name="rsp" id="Rock" /><label for="Rock">Rock</label>
+            <input type="radio" name="rsp" id="Paper"/><label for="Paper">Paper</label>
+            <input type="radio" name="rsp" id="Scissors"/><label for="Scissors">Scissors</label>
+            <br><button onclick="run()">Go</button><br>
+            <label for="msg">Computer's Choice: </label>
+            <input type="text" id="msg" disabled style="font-weight: bold;">
+            <p id="win"></p>
+        </div>
+        <div id="endMsg">
+            <h1 id="result"></h1>
+            <a href=""><button id="resultButton"></button></a>
+        </div>
+        <div id="retry"></div>
+    </div>
+    </body>
+    <script>
+        var You = 0;
+        var complife = 0;
+        var Rock = document.getElementById("Rock"),
+        Paper = document.getElementById("Paper"),
+        Scissors = document.getElementById("Scissors"),
+        win = document.getElementById("win"),
+        msg = document.getElementById("msg"),
+        You_amount = document.getElementById("you");
+        You_amount.innerHTML = 0;
+        comp_amount = document.getElementById("com");
+        comp_amount.innerHTML = 0;
+        function run(){
+            if(Rock.checked){choice = "Rock"}
+            if(Paper.checked){choice = "Paper"}
+            if(Scissors.checked){choice = "Scissors"}
+            function com() {
+                let option = ["Rock","Paper","Scissors"]
+                let rand = Math.floor(Math.random()*3)
+                var com = option[rand]
+                function result(win,lose,name){
+                    if(win == "Rock" && lose == "Scissors"){
+                        return "Rock breaks Scissors<br>"+"<b>"+name+" win.</b>"
+                    }
+                    if(win == "Paper" && lose == "Rock"){
+                        return "Paper wraps Rock<br>"+"<b>"+name+" win.</b>"
+                    }
+                    if(win == "Scissors" && lose == "Paper"){
+                        return "Scissors cuts Paper<br>"+"<b>"+name+" win.</b>"
+                    }
+                    if(win == lose){return "Tied"}
+                }
+                var choice_win = result(choice,com,"You");
+                var comp_win = result(com,choice,"Computer");
+                if(choice_win == undefined){
+                    if(complife < 5){comp_amount.innerHTML = (complife += 1);} 
+                }
+                if(comp_win == undefined){
+                    if(You < 5){You_amount.innerHTML = (You += 1);} 
+                }
+                if(You == 5){
+                    document.getElementById("content").style.display = "none";
+                    document.getElementById("endMsg").style.display = "block";
+                    document.getElementById("result").innerHTML = "You Win";
+                    document.getElementById("resultButton").innerHTML = "Play again";
+                }
+                if(complife == 5){
+                    document.getElementById("content").style.display = "none";
+                    document.getElementById("endMsg").style.display = "block";
+                    document.getElementById("result").innerHTML = "You Lose";
+                    document.getElementById("resultButton").innerHTML = "Retry";
+                }
+                function winner(one,two){
+                    if (one == undefined){return two;}
+                    if(two == undefined){return one;}
+                    if(one == two){return "<b>Tied</b>"}
+                }
+                var win_statement = winner(choice_win,comp_win)
+                // console.log(win_statement);
+                win.innerHTML = win_statement;
+                return com
+                
+            }
+            msg.value = com()
+        }
+    </script>
+</html>
