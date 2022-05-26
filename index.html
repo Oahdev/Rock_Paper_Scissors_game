@@ -7,9 +7,13 @@
     <style>
         *{outline: none;}
         .container{
-            margin: auto; width: 50%;text-align: center; font-family: Cambria;
+            margin: auto; width: 540px; text-align: center; font-family: Cambria;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             padding: 27px; border-radius: 9px; background-color: #f2f2f2d2;
+            min-height: 290px; margin-top: 63px;
+        }
+        @media (max-width: 768px) {
+            .container{width: 80%; margin-top: 18%;}
         }
         button{
             margin: 9px 0px; background-color: rgb(61, 167, 202);
@@ -23,9 +27,6 @@
         #endMsg{
             display: none;
         }
-        /* #content{
-            display: none;
-        } */
     </style>
     <body>
     <div class="container">
@@ -45,7 +46,7 @@
         </div>
         <div id="endMsg">
             <h1 id="result"></h1>
-            <a href=""><button id="resultButton"></button></a>
+            <button id="resultButton" onclick="refresh()"></button>
         </div>
         <div id="retry"></div>
     </div>
@@ -62,6 +63,7 @@
         You_amount.innerHTML = 0;
         comp_amount = document.getElementById("com");
         comp_amount.innerHTML = 0;
+        win.innerHTML ="Get 5 points to win"
         function run(){
             if(Rock.checked){choice = "Rock"}
             if(Paper.checked){choice = "Paper"}
@@ -72,13 +74,13 @@
                 var com = option[rand]
                 function result(win,lose,name){
                     if(win == "Rock" && lose == "Scissors"){
-                        return "Rock breaks Scissors<br>"+"<b>"+name+" win.</b>"
+                        return "Rock breaks Scissors<br>"+"<b>"+name+" win this round.</b>"
                     }
                     if(win == "Paper" && lose == "Rock"){
-                        return "Paper wraps Rock<br>"+"<b>"+name+" win.</b>"
+                        return "Paper wraps Rock<br>"+"<b>"+name+" win this round.</b>"
                     }
                     if(win == "Scissors" && lose == "Paper"){
-                        return "Scissors cuts Paper<br>"+"<b>"+name+" win.</b>"
+                        return "Scissors cuts Paper<br>"+"<b>"+name+" win this round.</b>"
                     }
                     if(win == lose){return "Tied"}
                 }
@@ -110,10 +112,17 @@
                 var win_statement = winner(choice_win,comp_win)
                 // console.log(win_statement);
                 win.innerHTML = win_statement;
-                return com
-                
+                return com             
             }
             msg.value = com()
+        }
+        function refresh(){
+            document.getElementById("content").style.display = "block";
+            document.getElementById("endMsg").style.display = "none";
+            document.getElementById("Rock").checked = true;
+            You_amount.innerHTML = 0; comp_amount.innerHTML = 0;
+            complife = 0; You = 0;
+            win.innerHTML = "Get 5 points to win"; msg.value = "";
         }
     </script>
 </html>
