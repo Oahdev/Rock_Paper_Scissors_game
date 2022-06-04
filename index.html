@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Rock Paper Scissors App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Rock Paper Scissors</h2>
+        <div id="life">
+            <p>You: <span id="you" style="font-weight: bold;"></span></p>
+            <p>Computer: <span id="com" style="font-weight: bold;"></span></p>
+        </div>
+        <div id="content">
+            <input type="radio" checked name="rsp" id="Rock" /><label for="Rock">Rock</label>
+            <input type="radio" name="rsp" id="Paper"/><label for="Paper">Paper</label>
+            <input type="radio" name="rsp" id="Scissors"/><label for="Scissors">Scissors</label>
+            <br><button onclick="run()">Go</button><br>
+            <label for="msg">Computer's Choice: </label>
+            <input type="text" id="msg" disabled style="font-weight: bold;">
+            <p id="win"></p>
+        </div>
+        <div id="endMsg">
+            <h1 id="result"></h1>
+            <button id="resultButton" onclick="refresh()"></button>
+        </div>
+        <div id="retry"></div>
+    </div>
+</body>
+<script src="play.js"></script>
+</html>
