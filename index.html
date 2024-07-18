@@ -2,28 +2,40 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <title>Rock Paper Scissors App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Rock Paper Scissors</h2>
-        <div id="life">
+        <h2 class="mb-3">Rock Paper Scissors</h2>
+        <div id="life" class="w-50 m-auto d-flex justify-content-between align-items-center gap-2 mb-2">
             <p>You: <span id="you" style="font-weight: bold;"></span></p>
             <p>Computer: <span id="com" style="font-weight: bold;"></span></p>
         </div>
         <div id="content">
-            <input type="radio" checked name="rsp" id="Rock" /><label for="Rock">Rock</label>
-            <input type="radio" name="rsp" id="Paper"/><label for="Paper">Paper</label>
-            <input type="radio" name="rsp" id="Scissors"/><label for="Scissors">Scissors</label>
-            <br><button onclick="run()">Go</button><br>
-            <label for="msg">Computer's Choice: </label>
-            <input type="text" id="msg" disabled style="font-weight: bold;">
-            <p id="win"></p>
+            <div class="d-flex w-50 m-auto justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center gap-1">
+                    <input type="radio" checked name="rsp" id="Rock" /><label for="Rock">Rock</label>
+                </div>
+                <div class="d-flex align-items-center gap-1">
+                    <input type="radio" name="rsp" id="Paper"/><label for="Paper">Paper</label>
+                </div>
+                <div class="d-flex align-items-center gap-1">
+                    <input type="radio" name="rsp" id="Scissors"/><label for="Scissors">Scissors</label>
+                </div>
+            </div>
+            <button class="btn btn-primary mb-3" onclick="run()">Go</button><br>
+            <div class="w-75 m-auto d-flex justify-content-between align-items-center mb-3">
+                <label class="w-auto" for="msg">Computer's Choice: </label>
+                <input class="form-control w-50"  type="text" id="msg" disabled style="font-weight: bold;">
+            </div>
+            <p id="win" class="fw-medium"></p>
         </div>
         <div id="endMsg">
             <h1 id="result"></h1>
-            <button id="resultButton" onclick="refresh()"></button>
+            <button id="resultButton" class="btn btn-primary" onclick="refresh()"></button>
         </div>
         <div id="retry"></div>
     </div>
